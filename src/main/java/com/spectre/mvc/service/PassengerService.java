@@ -16,8 +16,12 @@ public interface PassengerService {
 	
 	Passenger findPassengerByIN(String in);
 
-	boolean isPassengerINUnique(Integer id, String in);
+	boolean isPassengerINUnique(Integer id, String idn);
 
 	void deletePassengerById(Integer id);
+
+	boolean isPassengerEmailUnique(Integer id, String email);
+
+	Passenger findPassengerByEmail(String email);
 	
 }

@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "PASSENGER")
@@ -17,19 +19,28 @@ public class Passenger {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPassenger;
 
-	@Size(min = 3, max = 30)
+	@NotBlank(message="Este campo no puede ser vacío")
+	@NotNull(message="Este campo no puede ser nulo")
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 
-	@Size(min = 3, max = 30)
+	@NotBlank(message="Este campo no puede ser vacío")
+	@NotNull(message="Este campo no puede ser nulo")
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
-	@Column(name = "IDENTIFICATION_NUMBER", nullable = false)
+	@NotBlank(message="Este campo no puede ser vacío")
+	@NotNull(message="Este campo no puede ser nulo")
+	@Column(name = "IDENTIFICATION_NUMBER", nullable = false, unique=true)
 	private String identificationNumber;
+	
+	@NotBlank(message="Este campo no puede ser vacío")
+	@NotNull(message="Este campo no puede ser nulo")
+	@Column(name = "EMAIL", nullable = false, unique=true)
+	private String email;
 
 	@Column(name = "AGE", nullable = true)
-	private int age;
+	private Integer age;
 
 	public int getIdPassenger() {
 		return idPassenger;
@@ -63,11 +74,19 @@ public class Passenger {
 		this.identificationNumber = identificationNumber;
 	}
 
-	public int getAge() {
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

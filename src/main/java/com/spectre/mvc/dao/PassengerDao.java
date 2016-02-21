@@ -16,4 +16,6 @@ public interface PassengerDao {
 
 	Passenger findPassengerByIN(String in);
 
+	Passenger findPassengerByEmail(String email);
+
 }

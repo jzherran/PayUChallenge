@@ -1,4 +1,31 @@
-tr:first-child {
-	font-weight: bold;
-	background-color: #C6C9C4;
+.hide {
+	display: none;
+}
+
+.center-img {
+	display: block;
+	margin: auto;
+}
+
+.title-spectre {
+	height: 84.25px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.error {
+	color: #ff0039;
+	text-align: center;
+}
+
+#source-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 100;
+	font-weight: 700;
+}
+
+.actions {
+	vertical-align: middle !important;
 }

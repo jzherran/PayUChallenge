@@ -35,6 +35,7 @@ public class PassengerServiceImpl implements PassengerService {
 			entity.setFirstName(passenger.getFirstName());
 			entity.setLastName(passenger.getLastName());
 			entity.setIdentificationNumber(passenger.getIdentificationNumber());
+			entity.setEmail(passenger.getEmail());
 			entity.setAge(passenger.getAge());
 		}
 	}
@@ -53,10 +54,21 @@ public class PassengerServiceImpl implements PassengerService {
 	public Passenger findPassengerByIN(String in) {
 		return dao.findPassengerByIN(in);
 	}
+	
+	@Override
+	public Passenger findPassengerByEmail(String email) {
+		return dao.findPassengerByEmail(email);
+	}
 
 	@Override
-	public boolean isPassengerINUnique(Integer id, String in) {
-		Passenger passenger = findPassengerByIN(in);
+	public boolean isPassengerINUnique(Integer id, String idn) {
+		Passenger passenger = findPassengerByIN(idn);
+		return ( passenger == null || ((id != null) && (passenger.getIdPassenger() == id)));
+	}
+	
+	@Override
+	public boolean isPassengerEmailUnique(Integer id, String email) {
+		Passenger passenger = findPassengerByEmail(email);
 		return ( passenger == null || ((id != null) && (passenger.getIdPassenger() == id)));
 	}
 }

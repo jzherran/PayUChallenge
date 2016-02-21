@@ -31,6 +31,12 @@ public class PassengerDaoImpl extends AbstractDao<Integer, Passenger> implements
 		criteria.add(Restrictions.eq("identificationNumber", identificationNumber));
 		return (Passenger) criteria.uniqueResult();
 	}
+	
+	public Passenger findPassengerByEmail(String email) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("email", email));
+		return (Passenger) criteria.uniqueResult();
+	}
 
 	@Override
 	public void savePassenger(Passenger passenger) {
