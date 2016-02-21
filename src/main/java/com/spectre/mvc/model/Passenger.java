@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -19,23 +19,20 @@ public class Passenger {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPassenger;
 
-	@NotBlank(message="Este campo no puede ser vacío")
-	@NotNull(message="Este campo no puede ser nulo")
+	@NotBlank
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 
-	@NotBlank(message="Este campo no puede ser vacío")
-	@NotNull(message="Este campo no puede ser nulo")
+	@NotBlank
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
-	@NotBlank(message="Este campo no puede ser vacío")
-	@NotNull(message="Este campo no puede ser nulo")
+	@NotBlank
 	@Column(name = "IDENTIFICATION_NUMBER", nullable = false, unique=true)
 	private String identificationNumber;
 	
-	@NotBlank(message="Este campo no puede ser vacío")
-	@NotNull(message="Este campo no puede ser nulo")
+	@NotBlank
+	@Pattern(regexp=".+@.+\\.[a-z]+", message="No es un correo valido")
 	@Column(name = "EMAIL", nullable = false, unique=true)
 	private String email;
 

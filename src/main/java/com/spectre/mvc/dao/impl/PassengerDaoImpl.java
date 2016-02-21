@@ -1,4 +1,4 @@
-package com.spectre.mvc.dao;
+package com.spectre.mvc.dao.impl;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.spectre.mvc.dao.AbstractDao;
+import com.spectre.mvc.dao.PassengerDao;
 import com.spectre.mvc.model.Passenger;
 
 @Repository("passengerDao")

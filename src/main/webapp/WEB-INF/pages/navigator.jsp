@@ -9,9 +9,9 @@
 		<ul class="nav navbar-nav">
 			<li><a href="<c:url value='/' />">Inicio</a></li>
 			<li><a href="<c:url value='/passenger/new' />">Pasajeros</a></li>
-			<li><a href="<c:url value='/route' />">Rutas</a></li>
-			<li><a href="<c:url value='/plain' />">Aviones</a></li>
-			<li><a href="<c:url value='/flight' />">Vuelos</a></li>
+			<li><a href="<c:url value='/route/new/' />">Rutas</a></li>
+			<li><a href="<c:url value='/plain/new/' />">Aviones</a></li>
+			<li><a href="<c:url value='/flight/reserve/' />">Vuelos</a></li>
 			<li><a href="<c:url value='/detail' />">Informe</a></li>
 		</ul>
 	</nav>

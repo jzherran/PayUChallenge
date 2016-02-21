@@ -59,17 +59,17 @@ public class PassengerController {
 		
 		List<Passenger> passengers = service.findAllPassengers();
 		model.addAttribute("passengers", passengers);
-		if (result.hasErrors()) {
-			return "passenger";
-		}
+		
 		if(!service.isPassengerINUnique(passenger.getIdPassenger(), passenger.getIdentificationNumber())){
-			FieldError ssnError =new FieldError("passenger","identificationNumber",messageSource.getMessage("non.unique.idn", new String[]{passenger.getIdentificationNumber()}, Locale.getDefault()));
-		    result.addError(ssnError);
-			return "passenger";
+			FieldError idnError =new FieldError("passenger","identificationNumber",messageSource.getMessage("non.unique.idn", new String[]{passenger.getIdentificationNumber()}, null));
+		    result.addError(idnError);
+		    System.out.println(result);
 		}
 		if(!service.isPassengerEmailUnique(passenger.getIdPassenger(), passenger.getEmail())){
-			FieldError emailError =new FieldError("passenger","email",messageSource.getMessage("non.unique.email", new String[]{passenger.getEmail()}, Locale.getDefault()));
+			FieldError emailError =new FieldError("passenger","email",messageSource.getMessage("non.unique.email", new String[]{passenger.getEmail()}, null));
 		    result.addError(emailError);
+		}
+		if (result.hasErrors()) {
 			return "passenger";
 		}
 		

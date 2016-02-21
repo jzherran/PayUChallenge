@@ -1,4 +1,4 @@
-package com.spectre.mvc.service;
+package com.spectre.mvc.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spectre.mvc.dao.PassengerDao;
 import com.spectre.mvc.model.Passenger;
+import com.spectre.mvc.service.PassengerService;
 
 @Service("passengerService")
 @Transactional
@@ -24,11 +25,6 @@ public class PassengerServiceImpl implements PassengerService {
 		dao.savePassenger(passenger);
 	}
 
-	/*
-	 * Since the method is running with Transaction, No need to call hibernate update explicitly.
-	 * Just fetch the entity from db and update it with proper values within transaction.
-	 * It will be updated in db once transaction ends. 
-	 */
 	public void updatePassenger(Passenger passenger) {
 		Passenger entity = dao.findById(passenger.getIdPassenger());
 		if(entity!=null){
