@@ -1,5 +1,6 @@
 package com.spectre.mvc.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spectre.mvc.dao.PlaneDao;
 import com.spectre.mvc.model.Plane;
+import com.spectre.mvc.model.Report;
 import com.spectre.mvc.service.PlaneService;
 
 @Service("planeService")
@@ -58,6 +60,11 @@ public class PlaneServiceImpl implements PlaneService {
 	public boolean isEnrollmentUnique(Integer id, String enrollment) {
 		Plane plane = findPlaneByEnrollment(enrollment);
 		return ( plane == null || ((id != null) && (plane.getIdPlane() == id)));
+	}
+
+	@Override
+	public List<Report> createReportByDatesAndPlane(Integer idPlane, Calendar st, Calendar ed) {
+		return dao.createReportByDatesAndPlane(idPlane, st, ed);
 	}
 
 }

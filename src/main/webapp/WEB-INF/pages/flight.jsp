@@ -112,7 +112,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div id="flightTable" class="col-lg-12">
+			<div id="flightsTable" class="col-lg-12">
 				<h3>Listado de Vuelos</h3>
 				<table class="table table-striped table-hover">
 					<thead>

@@ -38,6 +38,9 @@ public class Passenger {
 
 	@Column(name = "AGE", nullable = true)
 	private Integer age;
+	
+	@Column(name = "ACTIVE")
+	private Boolean active = true;
 
 	public int getIdPassenger() {
 		return idPassenger;
@@ -87,6 +90,10 @@ public class Passenger {
 		this.age = age;
 	}
 	
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	
 	public String getFullName() {
 		return firstName + " " + lastName;
 	}
@@ -95,13 +102,14 @@ public class Passenger {
 		
 	}
 	
-	public Passenger(int idPassenger, String firstName, String lastName, String identificationNumber, int age) {
+	public Passenger(int idPassenger, String firstName, String lastName, String identificationNumber, Integer age, Boolean active) {
 		super();
 		this.idPassenger = idPassenger;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.identificationNumber = identificationNumber;
 		this.age = age;
+		this.active = active;
 	}
 
 	@Override

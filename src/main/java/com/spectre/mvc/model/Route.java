@@ -18,7 +18,7 @@ public class Route {
 	@Id
 	@Column(name = "ID_ROUTE")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRoute;
+	private Integer idRoute;
 
 	@Column(name = "TIME", nullable = false)
 	private long time;
@@ -36,23 +36,27 @@ public class Route {
 	@JoinColumn(name = "AIRPORT_DESTINATION")
 	private Airport airportDestination;
 
+	@Column(name = "ACTIVE")
+	private Boolean active = true;
+	
 	public Route() {
 
 	}
 
-	public Route(int idRoute, long time, Airport airportOrigin, Airport airportDestination) {
+	public Route(Integer idRoute, long time, Airport airportOrigin, Airport airportDestination, Boolean active) {
 		super();
 		this.idRoute = idRoute;
 		this.time = time;
 		this.airportOrigin = airportOrigin;
 		this.airportDestination = airportDestination;
+		this.active = active;
 	}
 
-	public int getIdRoute() {
+	public Integer getIdRoute() {
 		return idRoute;
 	}
 
-	public void setIdRoute(int idRoute) {
+	public void setIdRoute(Integer idRoute) {
 		this.idRoute = idRoute;
 	}
 
@@ -86,6 +90,10 @@ public class Route {
 
 	public void setTimeToVisual() {
 		this.timeToVisual = splitToComponentTimes(time);
+	}
+	
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Override

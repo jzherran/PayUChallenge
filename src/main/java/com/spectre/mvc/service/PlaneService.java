@@ -1,8 +1,10 @@
 package com.spectre.mvc.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import com.spectre.mvc.model.Plane;
+import com.spectre.mvc.model.Report;
 
 public interface PlaneService {
 
@@ -19,4 +21,6 @@ public interface PlaneService {
 	boolean isEnrollmentUnique(Integer id, String enrollment);
 
 	Plane findPlaneByEnrollment(String enrollment);
+	
+	List<Report> createReportByDatesAndPlane(Integer idPlane, Calendar st, Calendar ed);
 }

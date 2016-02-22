@@ -1,15 +1,19 @@
 package com.spectre.mvc.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +53,9 @@ public class Flight {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "TIME_END")
 	private Calendar timeEnd;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="flight")
+	private List<Purchase> purchases = new ArrayList<Purchase>();
 
 	@Transient
 	private String timeInitVisual;
@@ -153,6 +160,14 @@ public class Flight {
 					+ route.getAirportDestination().getIdAirport();
 		else
 			return "";
+	}
+	
+	public List<Purchase> getPurchases() {
+		return purchases;
+	}
+	
+	public void setPurchases(List<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 
 	@Override

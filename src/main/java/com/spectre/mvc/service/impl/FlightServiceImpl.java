@@ -40,11 +40,6 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public void deleteFlight(Integer id) {
-		dao.deleteFlight(id);
-	}
-
-	@Override
 	public boolean validateAvailabilityPlane(Flight flight, Calendar init, Calendar end) {
 		return dao.validateAvailabilityPlane(flight, init, end);
 	}

@@ -52,9 +52,7 @@ public class FlightDaoImpl extends AbstractDao<Integer, Flight> implements Fligh
 		calendar.setTime(new Date(System.currentTimeMillis()));
 		String now = formatter.format(calendar.getTime());
 
-		String queryString = 
-				
-				"select pas.id_flight from "
+		String queryString = "select pas.id_flight from "
 				+ "(select id_flight, capacity from plane inner join flight on plane.id_plane = flight.plane and time_init > '"+ now + "') as cap "
 				+ "inner join"
 				+ "(select id_flight, count(flight) as total from purchase right join flight on purchase.flight = flight.id_flight group by id_flight) as pas "
@@ -73,13 +71,6 @@ public class FlightDaoImpl extends AbstractDao<Integer, Flight> implements Fligh
 	@Override
 	public Flight findById(int id) {
 		return getByKey(id);
-	}
-
-	@Override
-	public void deleteFlight(Integer id) {
-		Flight flight = getByKey(id);
-		if (flight != null)
-			delete(flight);
 	}
 
 	@Override

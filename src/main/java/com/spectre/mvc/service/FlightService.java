@@ -16,8 +16,6 @@ public interface FlightService {
 
 	Flight findById(int id);
 
-	void deleteFlight(Integer id);
-	
 	boolean validateAvailabilityPlane(Flight flight, Calendar init, Calendar end);
 
 	void updateFlight(Flight flight);

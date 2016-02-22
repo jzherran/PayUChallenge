@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="clo-sm-8">
+				<div class="col-sm-8">
 					<p class="lead" style="text-align:center">
 						Este sistema se encarga de la administración de
 						información de una aerolinea, de tal forma que administra algunas

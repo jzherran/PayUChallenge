@@ -32,17 +32,21 @@ public class Plane {
 	@Column(name = "ENROLLMENT", nullable = false)
 	private String enrollment;
 
+	@Column(name = "ACTIVE")
+	private Boolean active = true;
+	
 	public Plane() {
 
 	}
 
-	public Plane(int idPlane, int model, int capacity, String manufacturer, String enrollment) {
+	public Plane(int idPlane, int model, int capacity, String manufacturer, String enrollment, Boolean active) {
 		super();
 		this.idPlane = idPlane;
 		this.model = model;
 		this.capacity = capacity;
 		this.manufacturer = manufacturer;
 		this.enrollment = enrollment;
+		this.active = active;
 	}
 
 	public int getIdPlane() {
@@ -85,6 +89,10 @@ public class Plane {
 		this.enrollment = enrollment;
 	}
 
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -3,6 +3,7 @@ package com.spectre.mvc.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.spectre.mvc.dao.AbstractDao;
@@ -16,6 +17,7 @@ public class RouteDaoImpl extends AbstractDao<Integer, Route> implements RouteDa
 	@Override
 	public List<Route> findAllRoutes() {
 		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("active", true));
 		return (List<Route>)criteria.list();
 	}
 
@@ -33,7 +35,7 @@ public class RouteDaoImpl extends AbstractDao<Integer, Route> implements RouteDa
 	public void deleteRoute(Integer id) {
 		Route route = getByKey(id);
 		if(route != null)
-			delete(route);
+			route.setActive(false);
 	}
 	
 }

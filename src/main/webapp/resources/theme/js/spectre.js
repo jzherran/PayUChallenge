@@ -18,14 +18,14 @@ $(document).ready((function() {
 		$button.hide();
 	});
 	
-	$("#planeTable").hover(function() {
+	$("#planesTable").hover(function() {
 		$(this).append($button);
 		$button.show();
 	}, function() {
 		$button.hide();
 	});
 	
-	$("#flightTable").hover(function() {
+	$("#flightsTable").hover(function() {
 		$(this).append($button);
 		$button.show();
 	}, function() {

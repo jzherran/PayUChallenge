@@ -18,10 +18,6 @@ public class PassengerDaoImpl extends AbstractDao<Integer, Passenger> implements
 		return getByKey(id);
 	}
 
-	public void saveEmployee(Passenger employee) {
-		persist(employee);
-	}
-
 	public void deleteEmployeeByIN(String in) {
 		Query query = getSession().createSQLQuery("delete from Passenger where identificationNumber LIKE %:in%");
 		query.setString("in", in);
@@ -48,14 +44,14 @@ public class PassengerDaoImpl extends AbstractDao<Integer, Passenger> implements
 	@Override
 	public void deletePassenger(Integer id) {
 		Passenger passenger = getByKey(id);
-		if(passenger != null)
-			delete(passenger);
+			passenger.setActive(false);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Passenger> findAllPassengers() {
 		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("active", true));
 		return (List<Passenger>) criteria.list();
 	}
 }

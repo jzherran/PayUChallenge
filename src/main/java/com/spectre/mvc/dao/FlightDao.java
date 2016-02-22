@@ -14,8 +14,6 @@ public interface FlightDao {
 
 	Flight findById(int id);
 
-	void deleteFlight(Integer id);
-	
 	boolean validateAvailabilityPlane(Flight flight, Calendar init, Calendar end);
 
 	List<Flight> findAllFlightsAvailable();
