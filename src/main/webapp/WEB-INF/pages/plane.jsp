@@ -10,58 +10,61 @@
 <jsp:include page="head.jsp"></jsp:include>
 <spring:url value="/resources/img/del.png" var="delete" />
 <spring:url value="/resources/img/edi.png" var="edit" />
-<title>Spectre - Rutas</title>
+<title>Spectre - Aeronaves</title>
 </head>
 <body>
 	<div class="container">
 		<jsp:include page="navigator.jsp"></jsp:include>
-		<h2>Administrar Rutas</h2>
+		<h2>Administrar Aeronaves</h2>
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="well">
-					<form:form method="POST" modelAttribute="route"
-						class="form-horizontal" id="newRoute">
+					<form:form method="POST" modelAttribute="plane"
+						class="form-horizontal" id="newPlane">
 						<fieldset>
 							<legend>Información de la ruta</legend>
-							<form:input type="hidden" path="idRoute" id="idRoute" />
+							<form:input type="hidden" path="idPlane" id="idPlane" />
 							<div class="form-group">
-								<label for="airportOrigin" class="col-lg-3 control-label">Origen</label>
+								<label for="manufacturer" class="col-lg-3 control-label">Fabricante</label>
 								<div class="col-lg-9">
-									<form:select class="form-control" items="${airports}" id="airportOrigin" 
-										itemValue="idAirport" path="airportOrigin" itemLabel="name">
-									</form:select>
+									<form:input type="text" class="form-control" id="manufacturer" path="manufacturer"></form:input>
 								</div>
-								<form:errors path="airportOrigin" cssClass="error col-lg-12" />
+								<form:errors path="manufacturer" cssClass="error col-lg-12" />
 							</div>
 							<div class="form-group">
-								<label for="airportDestination" class="col-lg-3 control-label">Destino</label>
+								<label for="model" class="col-lg-3 control-label">Modelo</label>
 								<div class="col-lg-9">
-									<form:select class="form-control" id="airportDestination" itemValue="idAirport" 
-										itemLabel="name" items="${airports}" path="airportDestination">
-									</form:select>
+									<form:input type="number" min="1500" max="5000" 
+										class="form-control" id="model" path="model"></form:input>
 								</div>
-								<form:errors path="airportDestination" cssClass="error col-lg-12" />
+								<form:errors path="model" cssClass="error col-lg-12" />
 							</div>
 							<div class="form-group">
-								<label for="time" class="col-lg-3 control-label">Duración
-									(SEG)</label>
+								<label for="capacity" class="col-lg-3 control-label">Capacidad</label>
 								<div class="col-lg-9">
-									<form:input type="number" min="10" max="86400"
-										class="form-control" id="time" path="time"></form:input>
+									<form:input type="number" min="1" max="1000" 
+										class="form-control" id="capacity" path="capacity"></form:input>
 								</div>
-								<form:errors path="time" cssClass="error col-lg-12" />
+								<form:errors path="capacity" cssClass="error col-lg-12" />
+							</div>
+							<div class="form-group">
+								<label for="enrollment" class="col-lg-3 control-label">Matrícula</label>
+								<div class="col-lg-9">
+									<form:input type="text" class="form-control" id="enrollment" path="enrollment"></form:input>
+								</div>
+								<form:errors path="enrollment" cssClass="error col-lg-12" />
 							</div>
 							<div class="form-group">
 								<div class="col-lg-8 col-lg-offset-2">
 									<c:choose>
 										<c:when test="${controlAction}">
 											<a class="btn btn-default btn-form"
-												href="<c:url value='/route/delete-${route.idRoute}-route'/>">
+												href="<c:url value='/plane/delete-${plane.idPlane}-plane'/>">
 												Eliminar </a>
 											<button type="submit" class="btn btn-success btn-form">Actualizar</button>
 										</c:when>
 										<c:otherwise>
-											<a href="<c:url value='/route/new' />"
+											<a href="<c:url value='/plane/new' />"
 												class="btn btn-default btn-form">Cancelar</a>
 											<button type="submit" class="btn btn-primary btn-form">Crear</button>
 										</c:otherwise>
@@ -72,26 +75,28 @@
 					</form:form>
 				</div>
 			</div>
-			<div id="routesTable" class="col-lg-8">
-				<h3>Listado de Rutas</h3>
+			<div id="planesTable" class="col-lg-8">
+				<h3>Listado de Aeronaves</h3>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>Aeropuerto de origen</th>
-							<th>Aeropuerto de destino</th>
-							<th>Duración</th>
+							<th>Modelo</th>
+							<th>Matrícula</th>
+							<th>Capacidad</th>
+							<th>Fabricante</th>
 							<th class="hide actions">Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${routes}" var="route">
+						<c:forEach items="${planes}" var="plane">
 							<tr>
-								<td>${route.airportOrigin.name}</td>
-								<td>${route.airportDestination.name}</td>
-								<td>${route.timeToVisual}</td>
+								<td>${plane.model}</td>
+								<td>${plane.enrollment}</td>
+								<td>${plane.capacity}</td>
+								<td>${plane.manufacturer}</td>
 								<td class="hide actions"><a
-									href="<c:url value='/route/edit-${route.idRoute}-route'/>">
-										<img src="${edit}" alt="Editar ruta" height="16" width="16"
+									href="<c:url value='/plane/edit-${plane.idPlane}-plane'/>">
+										<img src="${edit}" alt="Editar aeronave" height="16" width="16"
 										class="center-img" />
 								</a></td>
 							</tr>

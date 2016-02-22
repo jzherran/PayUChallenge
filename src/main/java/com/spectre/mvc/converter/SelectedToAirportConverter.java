@@ -8,16 +8,20 @@ import com.spectre.mvc.model.Airport;
 import com.spectre.mvc.service.AirportService;
 
 @Component
-public class DestinationToAirportConverter implements Converter<Object, Airport>{
+public class SelectedToAirportConverter implements Converter<Object, Airport>{
  
     @Autowired
     AirportService airportService;
 
     @Override
     public Airport convert(Object element) {
-        Integer id = Integer.parseInt((String)element);
-        Airport airport= airportService.findById(id);
-        return airport;
+    	if(element instanceof Airport)
+    		return (Airport) element;
+    	else {
+	        Integer id = Integer.parseInt((String)element);
+	        Airport airport= airportService.findById(id);
+	        return airport;
+    	}
     }
      
 }

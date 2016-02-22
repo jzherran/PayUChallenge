@@ -12,4 +12,6 @@ public interface RouteDao {
 
 	Route findById(int id);
 
+	void deleteRoute(Integer id);
+
 }

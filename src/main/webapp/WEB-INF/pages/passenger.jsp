@@ -77,15 +77,15 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<c:choose>
 											<c:when test="${controlAction}">
-												<button type="submit" class="btn btn-success">Actualizar</button>
-												<a class="btn btn-warning" 
+												<a class="btn btn-default btn-form" 
 													href="<c:url value='/passenger/delete-${passenger.idPassenger}-passenger'/>">
 													Eliminar
 												</a>
+												<button type="submit" class="btn btn-success btn-form">Actualizar</button>
 											</c:when>
 											<c:otherwise>
-												<a href="<c:url value='/passenger/new' />" class="btn btn-default">Cancelar</a>
-												<button type="submit" class="btn btn-primary">Crear</button>
+												<a href="<c:url value='/passenger/new' />" class="btn btn-default btn-form">Cancelar</a>
+												<button type="submit" class="btn btn-primary btn-form">Crear</button>
 											</c:otherwise>
 										</c:choose>
 									</div>

@@ -28,5 +28,12 @@ public class RouteDaoImpl extends AbstractDao<Integer, Route> implements RouteDa
 	public Route findById(int id) {
 		return getByKey(id);
 	}
+
+	@Override
+	public void deleteRoute(Integer id) {
+		Route route = getByKey(id);
+		if(route != null)
+			delete(route);
+	}
 	
 }

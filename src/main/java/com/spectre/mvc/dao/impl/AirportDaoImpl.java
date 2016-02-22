@@ -3,6 +3,7 @@ package com.spectre.mvc.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import com.spectre.mvc.dao.AbstractDao;
@@ -16,6 +17,7 @@ public class AirportDaoImpl extends AbstractDao<Integer, Airport> implements Air
 	@Override
 	public List<Airport> findAllAirports() {
 		Criteria criteria = createEntityCriteria();
+		criteria.addOrder(Order.asc("name"));
 		return (List<Airport>)criteria.list();
 	}
 

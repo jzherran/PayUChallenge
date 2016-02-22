@@ -11,4 +11,8 @@ public interface RouteService {
 	void saveRoute(Route route);
 
 	Route findById(int id);
+
+	void updateRoute(Route route);
+
+	void deleteRouteById(Integer id);
 }

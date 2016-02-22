@@ -15,7 +15,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.spectre.mvc.converter.DestinationToAirportConverter;
+import com.spectre.mvc.converter.SelectedToAirportConverter;
+import com.spectre.mvc.converter.SelectedToFlightConverter;
+import com.spectre.mvc.converter.SelectedToPassengerConverter;
+import com.spectre.mvc.converter.SelectedToPlaneConverter;
+import com.spectre.mvc.converter.SelectedToRouteConverter;
+import com.spectre.mvc.converter.TimeFormatToFlightConverter;
 
 @Configuration
 @EnableWebMvc
@@ -23,7 +28,22 @@ import com.spectre.mvc.converter.DestinationToAirportConverter;
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
-    DestinationToAirportConverter destinationToAirportConverter;
+    SelectedToAirportConverter selectedToAirportConverter;
+	
+	@Autowired
+    SelectedToRouteConverter selectedToRouteConverter;
+	
+	@Autowired
+    SelectedToPlaneConverter selectedToPlaneConverter;
+	
+	@Autowired
+    SelectedToPassengerConverter selectedToPassengerConverter;
+	
+	@Autowired
+    SelectedToFlightConverter selectedToFlightConverter;
+	
+	@Autowired
+    TimeFormatToFlightConverter timeFormatToFlightConverter;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -50,7 +70,12 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(destinationToAirportConverter);
+		registry.addConverter(selectedToAirportConverter);
+		registry.addConverter(selectedToRouteConverter);
+		registry.addConverter(selectedToPlaneConverter);
+		registry.addConverter(selectedToPassengerConverter);
+		registry.addConverter(selectedToFlightConverter);
+		registry.addConverter(timeFormatToFlightConverter);
 	}
 
 	@Override

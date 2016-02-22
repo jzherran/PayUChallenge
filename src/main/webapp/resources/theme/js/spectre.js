@@ -17,4 +17,18 @@ $(document).ready((function() {
 	}, function() {
 		$button.hide();
 	});
+	
+	$("#planeTable").hover(function() {
+		$(this).append($button);
+		$button.show();
+	}, function() {
+		$button.hide();
+	});
+	
+	$("#flightTable").hover(function() {
+		$(this).append($button);
+		$button.show();
+	}, function() {
+		$button.hide();
+	});
 }));

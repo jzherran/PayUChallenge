@@ -42,49 +42,85 @@ public class RouteController {
 	 */
 	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
 	public String principalRoute(ModelMap model) {
-		fillModel(model, false, null);
+		fillModel(model);
+		fillRoute(model, null);
 		return "route";
 	}
-	
+
 	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
 	public String saveRoute(@Valid Route route, BindingResult result, ModelMap model) {
-		
-		fillModel(model, false, null);
+		fillModel(model);
+
 		if (result.hasErrors()) {
 			return "route";
 		}
-		if(route.getAirportOrigin().equals(route.getAirportDestination())){
-			FieldError originError =new FieldError("route","airportOrigin",messageSource.getMessage("non.equals.airport", new String[] {route.getAirportOrigin().getName()}, Locale.getDefault()));
-		    result.addError(originError);
+
+		if (route.getAirportOrigin().equals(route.getAirportDestination())) {
+			FieldError originError = new FieldError("route", "airportOrigin",
+					messageSource.getMessage("non.equals.airport", null, Locale.getDefault()));
+			result.addError(originError);
 			return "route";
 		}
-		
+
 		routeService.saveRoute(route);
 		return "redirect:/route/new";
 	}
 
-	private void fillModel(ModelMap model, boolean control, Integer id) {
+	private void fillModel(ModelMap model) {
 		List<Route> routes = routeService.findAllRoutes();
 		model.addAttribute("routes", routes);
 
 		List<Airport> airports = airportService.findAllAirports();
 		model.addAttribute("airports", airports);
 
-		fillRoute(model, id);
-		model.addAttribute("controlAction", control);
 	}
 
 	private void fillRoute(ModelMap model, Integer id) {
 		Route route = new Route();
-		if(id != null)
+		if (id != null)
 			route = routeService.findById(id);
 		model.addAttribute("route", route);
-		
+
 	}
-	
+
 	@RequestMapping(value = { "/edit-{id}-route" }, method = RequestMethod.GET)
-	public String principalRoute(@PathVariable Integer id, ModelMap model) {
-		fillModel(model, true, id);
+	public String updateRoute(@PathVariable Integer id, ModelMap model) {
+		fillModel(model);
+		fillRoute(model, id);
+		model.addAttribute("controlAction", true);
 		return "route";
+	}
+
+	@RequestMapping(value = { "/edit-{id}-route" }, method = RequestMethod.POST)
+	public String updateRoute(@Valid Route route, BindingResult result, ModelMap model) {
+
+		fillModel(model);
+		model.addAttribute("controlAction", true);
+		
+		if (result.hasErrors()) {
+			return "route";
+		}
+		if (route.getAirportOrigin().equals(route.getAirportDestination())) {
+			FieldError originError = new FieldError("route", "airportOrigin", messageSource.getMessage(
+					"non.equals.airport", new String[] { route.getAirportOrigin().getName() }, Locale.getDefault()));
+			result.addError(originError);
+			return "route";
+		}
+
+		routeService.updateRoute(route);
+		model.addAttribute("controlAction", false);
+
+		return "redirect:/route/new";
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = { "/delete-{id}-route" }, method = RequestMethod.GET)
+	public String deleteRoute(@PathVariable Integer id) {
+		routeService.deleteRouteById(id);
+		return "redirect:/route/new";
 	}
 }

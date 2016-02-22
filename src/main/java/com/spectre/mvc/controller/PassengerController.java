@@ -60,17 +60,19 @@ public class PassengerController {
 		List<Passenger> passengers = service.findAllPassengers();
 		model.addAttribute("passengers", passengers);
 		
+		if (result.hasErrors()) {
+			return "passenger";
+		}
+		
 		if(!service.isPassengerINUnique(passenger.getIdPassenger(), passenger.getIdentificationNumber())){
 			FieldError idnError =new FieldError("passenger","identificationNumber",messageSource.getMessage("non.unique.idn", new String[]{passenger.getIdentificationNumber()}, null));
 		    result.addError(idnError);
-		    System.out.println(result);
+		    return "passenger";
 		}
 		if(!service.isPassengerEmailUnique(passenger.getIdPassenger(), passenger.getEmail())){
 			FieldError emailError =new FieldError("passenger","email",messageSource.getMessage("non.unique.email", new String[]{passenger.getEmail()}, null));
 		    result.addError(emailError);
-		}
-		if (result.hasErrors()) {
-			return "passenger";
+		    return "passenger";
 		}
 		
 		service.savePassenger(passenger);
@@ -85,7 +87,7 @@ public class PassengerController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/edit-{id}-passenger" }, method = RequestMethod.GET)
-	public String editEmployee(@PathVariable Integer id, ModelMap model) {
+	public String updatePassenger(@PathVariable Integer id, ModelMap model) {
 		
 		List<Passenger> passengers = service.findAllPassengers();
 		model.addAttribute("passengers", passengers);

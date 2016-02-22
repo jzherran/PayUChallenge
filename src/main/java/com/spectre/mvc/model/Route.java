@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ROUTE")
@@ -25,10 +26,12 @@ public class Route {
 	@Transient
 	private String timeToVisual;
 
+	@NotNull
 	@ManyToOne(targetEntity = Airport.class)
 	@JoinColumn(name = "AIRPORT_ORIGIN")
 	private Airport airportOrigin;
 
+	@NotNull
 	@ManyToOne(targetEntity = Airport.class)
 	@JoinColumn(name = "AIRPORT_DESTINATION")
 	private Airport airportDestination;
@@ -81,8 +84,8 @@ public class Route {
 		return splitToComponentTimes(time);
 	}
 
-	public void setTimeToVisual(String timeToVisual) {
-		this.timeToVisual = timeToVisual;
+	public void setTimeToVisual() {
+		this.timeToVisual = splitToComponentTimes(time);
 	}
 
 	@Override
@@ -93,13 +96,16 @@ public class Route {
 			return false;
 		if (!(obj instanceof Route))
 			return false;
+		Route other = (Route) obj;
+		if (idRoute != other.idRoute) {
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Route [id=" + idRoute + ", time=" + time + ", origin=" + airportOrigin + ", destiny="
-				+ airportDestination + "]";
+		return airportOrigin.getAirportCode() + " - " + airportDestination.getAirportCode();
 	}
 
 	public String splitToComponentTimes(long longVal) {

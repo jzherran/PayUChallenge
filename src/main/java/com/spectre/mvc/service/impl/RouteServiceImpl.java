@@ -33,4 +33,20 @@ public class RouteServiceImpl implements RouteService {
 		return dao.findById(id);
 	}
 
+	@Override
+	public void updateRoute(Route route) {
+		Route entity = dao.findById(route.getIdRoute());
+		if(entity != null) {
+			entity.setAirportOrigin(route.getAirportOrigin());
+			entity.setAirportDestination(route.getAirportDestination());
+			entity.setTime(route.getTime());
+			entity.setTimeToVisual();
+		}
+	}
+
+	@Override
+	public void deleteRouteById(Integer id) {
+		dao.deleteRoute(id);
+	}
+
 }

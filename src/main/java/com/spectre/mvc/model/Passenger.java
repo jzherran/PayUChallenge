@@ -86,6 +86,10 @@ public class Passenger {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+	
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 
 	public Passenger() {
 		

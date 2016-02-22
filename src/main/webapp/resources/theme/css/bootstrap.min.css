@@ -2602,12 +2602,14 @@ th {
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
-	border-top: 1px solid #dfd7ca
+	border-top: 1px solid #dfd7ca;
+	text-align: center
 }
 
 .table>thead>tr>th {
 	vertical-align: bottom;
-	border-bottom: 2px solid #dfd7ca
+	border-bottom: 2px solid #dfd7ca;
+	text-align: center
 }
 
 .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,

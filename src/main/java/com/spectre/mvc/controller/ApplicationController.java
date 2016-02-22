@@ -17,4 +17,9 @@ public class ApplicationController {
 	public String principalPage(ModelMap model) {
 		return "index";
 	}
+	
+	@RequestMapping(value = { "/detail" }, method = RequestMethod.GET)
+	public String detailPage(ModelMap model) {
+		return "detail";
+	}
 }
